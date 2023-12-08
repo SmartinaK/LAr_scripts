@@ -18,7 +18,7 @@ _pi = 3.14159
 
 from Configurables import  MomentumRangeParticleGun
 pgun = MomentumRangeParticleGun("ParticleGun_Photon")
-pgun.PdgCodes = [11]
+pgun.PdgCodes = [22]
 pgun.MomentumMin = momentum * GeV
 pgun.MomentumMax = momentum * GeV
 pgun.PhiMin = 0
@@ -49,7 +49,7 @@ detectors_to_use=[
     'Detector/DetFCCeeIDEA-LAr/compact/FCCee_DectEmptyMaster.xml',
     #'Detector/DetFCCeeIDEA-LAr/compact/FCCee_DectMaster.xml',
     #'Detector/DetFCCeeECalInclined/compact/original_FCCee_ECalBarrel_calibration.xml',
-    'Detector/DetFCCeeECalInclined/compact/FCCee_ECalBarrel_calibration.xml',
+    'Detector/DetFCCeeECalInclined/compact/FCCee_ECalBarrel_thetamodulemerged_calibration.xml',
     ]
 geoservice.detectors = [os.path.join(path_to_detector, _det) for _det in detectors_to_use]
 
@@ -66,7 +66,7 @@ geantservice.seedValue = 4242
 # and a tool that saves the calorimeter hits
 ecalBarrelHitsName = "ECalBarrelPositionedHits"
 from Configurables import SimG4Alg, SimG4SaveCalHits
-saveECalBarrelTool = SimG4SaveCalHits("saveECalBarrelHits",readoutNames = ["ECalBarrelEta"])
+saveECalBarrelTool = SimG4SaveCalHits("saveECalBarrelHits",readoutNames = ["ECalBarrelModuleThetaMerged"])
 saveECalBarrelTool.CaloHits.Path = ecalBarrelHitsName
 
 from Configurables import SimG4PrimariesFromEdmTool
@@ -82,7 +82,7 @@ geantsim = SimG4Alg("SimG4Alg",
 from Configurables import SamplingFractionInLayers
 hist = SamplingFractionInLayers("hists",
                                  energyAxis = momentum,
-                                 readoutName = "ECalBarrelEta",
+                                 readoutName = "ECalBarrelModuleThetaMerged",
                                  layerFieldName = "layer",
                                  activeFieldName = "type",
                                  activeFieldValue = 0,

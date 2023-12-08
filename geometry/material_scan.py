@@ -14,6 +14,7 @@ path_to_detectors = os.environ.get("FCCDETECTORS", "")
 geoservice = GeoSvc("GeoSvc")
 geoservice.detectors = [
                           #os.path.join(path_to_detectors, 'Detector/DetFCCeeIDEA-LAr/compact/FCCee_DectMaster.xml'),
+                          #os.path.join(path_to_detectors, 'Detector/DetFCCeeIDEA-LAr/compact/FCCee_DectMaster_thetamodulemerged.xml')
                           os.path.join(path_to_detectors, 'Detector/DetFCCeeIDEA-LAr/compact/FCCee_DectMaster_forX0.xml'),
                           #os.path.join(path_to_detectors, 'Detector/DetFCCeeIDEA-LAr/compact/FCCee_DectEmptyMaster.xml'),
                        ]

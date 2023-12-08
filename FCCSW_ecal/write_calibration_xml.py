@@ -89,10 +89,10 @@ os.system("sed -i 's/activeVolumesNumber.*,/activeVolumesNumber = %d,/' run*.py"
 
 # modify the number of layers in noise_map.py
 os.system("sed -i 's/numRadialLayers.*,/numRadialLayers = %d,/' noise_map.py"%numberOfLayer)
-os.system("sed -i 's/activeVolumesNumbers.*,/activeVolumesNumbers = [%d],/' noise_map.py neighbours.py"%numberOfLayer)
+os.system("sed -i 's/activeVolumesNumbers.*,/activeVolumesNumbers = [%d],/' noise_map.py neighbours_theta.py"%numberOfLayer)
 
 # modify the tower definition in clustering algorithms
-os.system("sed -i 's/deltaEtaTower.*$/deltaEtaTower = %s, deltaPhiTower = 2*_pi\/%s.,/'  run*.py"%(eta_bin_size, n_phi_bins))
+#os.system("sed -i 's/deltaEtaTower.*$/deltaEtaTower = %s, deltaPhiTower = 2*_pi\/%s.,/'  run*.py"%(eta_bin_size, n_phi_bins))
 
 # Write upstream correction xml
 # Re-make absorber and readout not sensitive, make cryostat sensitive and anlarge it to 1.1 m 

@@ -1,5 +1,7 @@
+print("start script")
 import os
 from Gaudi.Configuration import *
+
 
 # Detector geometry
 from Configurables import GeoSvc
@@ -14,11 +16,12 @@ detectors_to_use=[
 
 # prefix all xmls with path_to_detector
 geoservice.detectors = [os.path.join(path_to_detector, _det) for _det in detectors_to_use]
-geoservice.OutputLevel = INFO
+geoservice.OutputLevel = VERBOSE
 
 # Geant4 service
 # Configures the Geant simulation: geometry, physics list and user actions
 from Configurables import CreateFCCeeCaloNeighbours
+print("execute CreateFCCeeCaloNeighbours()")
 neighbours = CreateFCCeeCaloNeighbours("neighbours", 
                                        outputFileName = "neighbours_map_barrel_thetamodulemerged.root",
                                        readoutNamesModuleTheta = ["ECalBarrelModuleThetaMerged"],
@@ -31,7 +34,8 @@ neighbours = CreateFCCeeCaloNeighbours("neighbours",
                                        includeDiagonalCells = False,
                                        readoutNamesVolumes = [],
                                        connectBarrels = False, 
-                                       OutputLevel = DEBUG)
+                                       OutputLevel = VERBOSE)
+print(neighbours)
 
 # ApplicationMgr
 from Configurables import ApplicationMgr
@@ -40,5 +44,5 @@ ApplicationMgr( TopAlg = [],
                 EvtMax   = 1,
                 # order is important, as GeoSvc is needed by G4SimSvc
                 ExtSvc = [geoservice, neighbours],
-                OutputLevel=INFO
+                OutputLevel=VERBOSE
 )

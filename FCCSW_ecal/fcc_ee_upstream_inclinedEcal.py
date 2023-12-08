@@ -5,8 +5,8 @@ from GaudiKernel.SystemOfUnits import MeV, GeV
 # Electron momentum in GeV
 momentum = 50
 # Theta min and max in degrees                                                                                                      
-thetaMin = 85.
-thetaMax = 95.
+thetaMin = 90.
+thetaMax = 90.
 
 # Data service
 from Configurables import FCCDataSvc
@@ -17,7 +17,7 @@ _pi = 3.14159
 
 from Configurables import  MomentumRangeParticleGun
 pgun = MomentumRangeParticleGun("ParticleGun_Electron")
-pgun.PdgCodes = [11]
+pgun.PdgCodes = [22]
 pgun.MomentumMin = momentum * GeV
 pgun.MomentumMax = momentum * GeV
 pgun.PhiMin = 0
@@ -41,7 +41,7 @@ from Configurables import GeoSvc
 from os import environ, path
 detector_path = environ.get("FCCDETECTORS", "")
 detectors = ['Detector/DetFCCeeIDEA-LAr/compact/FCCee_DectEmptyMaster.xml',
-             'Detector/DetFCCeeECalInclined/compact/FCCee_ECalBarrel_upstream.xml']
+             'Detector/DetFCCeeECalInclined/compact/FCCee_ECalBarrel_thetamodulemerged_upstream.xml']
 geoservice = GeoSvc("GeoSvc", detectors=[path.join(detector_path, detector) for detector in detectors],
                     OutputLevel = WARNING)
 
@@ -60,7 +60,7 @@ geantservice.seedValue = 4242
 # Translates EDM to G4Event, passes the event to G4, writes out outputs via tools
 # and a tool that saves the calorimeter hits
 from Configurables import SimG4Alg, SimG4SaveCalHits
-saveecaltool = SimG4SaveCalHits("saveECalBarrelHits",readoutNames = ["ECalBarrelEta"])
+saveecaltool = SimG4SaveCalHits("saveECalBarrelHits",readoutNames = ["ECalBarrelModuleThetaMerged"])
 saveecaltool.CaloHits.Path = "ECalBarrelHits"
 
 from Configurables import SimG4PrimariesFromEdmTool
@@ -83,7 +83,7 @@ createcellsBarrel.cells.Path="ECalBarrelCells"
 
 from Configurables import EnergyInCaloLayers
 energy_in_layers = EnergyInCaloLayers("energyInLayers",
-                                      readoutName="ECalBarrelEta",
+                                      readoutName="ECalBarrelModuleThetaMerged",
                                       numLayers = 12,
                                       # sampling fraction is given as the energy correction will be applied on
                                       # calibrated cells

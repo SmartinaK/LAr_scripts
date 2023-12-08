@@ -12,9 +12,9 @@ addNoise = False
 momentum = 1 # in GeV
 #thetaMin = 90.25 # degrees
 #thetaMax = 90.25 # degrees
-thetaMin = 50 # degrees
-thetaMax = 130 # degrees
-pdgCode = 11 # 11 electron, 13 muon, 22 photon, 111 pi0, 211 pi+
+thetaMin = 90 # degrees
+thetaMax = 90 # degrees
+pdgCode = 22 # 11 electron, 13 muon, 22 photon, 111 pi0, 211 pi+
 magneticField = False
 
 from Gaudi.Configuration import *
@@ -292,7 +292,7 @@ createemptycells.cells.Path = "emptyCaloCells"
 # Produce sliding window clusters
 from Configurables import CaloTowerTool
 towers = CaloTowerTool("towers",
-                               deltaEtaTower = 0.01, deltaPhiTower = 2*_pi/768.,
+                               deltaEtaTower = 0, deltaPhiTower = 2*_pi/0.,
                                radiusForPosition = 2160 + 40 / 2.0,
                                ecalBarrelReadoutName = ecalBarrelReadoutNamePhiEta,
                                ecalEndcapReadoutName = ecalEndcapReadoutName,
@@ -350,9 +350,9 @@ correctCaloClusters = CorrectCaloClusters("correctCaloClusters",
                                           firstLayerIDs = [0],
                                           lastLayerIDs = [11],
                                           readoutNames = [ecalBarrelReadoutNamePhiEta],
-                                          upstreamParameters = [[0.033955208567442975, -3.818122686176795, -146.59497297249345, 0.563447903447204, -3.7906629536351906, -8.569962044554627]],
+                                          upstreamParameters = [[0.051168071945733966, -48.07767834827231, -997.9722640660127, 0.8494895774746964, -1.8474547543668478, -0.8730415066270645]],
                                           upstreamFormulas = [['[0]+[1]/(x-[2])', '[0]+[1]/(x-[2])']],
-                                          downstreamParameters = [[-0.00357017357914002, 0.006624434345822984, 1.0065650241358008, -1.285181650875406, -0.0707783194915608, 12.907319280196257]],
+                                          downstreamParameters = [[0.004471308125940182, 0.004831264669253533, 1.2816365579256281, -1.4669594442216538, -0.0037374327511796243, 5.868117043727622]],
                                           downstreamFormulas = [['[0]+[1]*x', '[0]+[1]/sqrt(x)', '[0]+[1]/x']],
                                           OutputLevel = INFO
                                           )
@@ -420,9 +420,9 @@ correctCaloTopoClusters = CorrectCaloClusters("correctCaloTopoClusters",
                                           firstLayerIDs = [0],
                                           lastLayerIDs = [11],
                                           readoutNames = [ecalBarrelReadoutNamePhiEta],
-                                          upstreamParameters = [[0.033955208567442975, -3.818122686176795, -146.59497297249345, 0.563447903447204, -3.7906629536351906, -8.569962044554627]],
+                                          upstreamParameters = [[0.051168071945733966, -48.07767834827231, -997.9722640660127, 0.8494895774746964, -1.8474547543668478, -0.8730415066270645]],
                                           upstreamFormulas = [['[0]+[1]/(x-[2])', '[0]+[1]/(x-[2])']],
-                                          downstreamParameters = [[-0.00357017357914002, 0.006624434345822984, 1.0065650241358008, -1.285181650875406, -0.0707783194915608, 12.907319280196257]],
+                                          downstreamParameters = [[0.004471308125940182, 0.004831264669253533, 1.2816365579256281, -1.4669594442216538, -0.0037374327511796243, 5.868117043727622]],
                                           downstreamFormulas = [['[0]+[1]*x', '[0]+[1]/sqrt(x)', '[0]+[1]/x']],
                                           OutputLevel = INFO
                                           )

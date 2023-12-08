@@ -102,7 +102,8 @@ class UpstreamJobProcessor(JobProcessor):
 
 class ClusterJobProcessor(JobProcessor):
     def __init__(self, outdir, sampling_fracs=None, corrections=None):
-        script = "runTopoAndSlidingWindowAndCaloSim.py"
+#        script = "runTopoAndSlidingWindowAndCaloSim.py"
+        script = "run_thetamodulemerged.py"
         output_tag = "upstream_output"
         super().__init__(script, outdir, output_tag)
         if sampling_fracs:
@@ -138,7 +139,8 @@ class ProductionJobProcessor(JobProcessor):
 
 class ClusterProductionJobProcessor(ProductionJobProcessor):
     def __init__(self, outdir, sampling_fracs=None, corrections=None):
-        script = "runTopoAndSlidingWindowAndCaloSim.py"
+        script = "run_thetamodulemerged.py"
+ #       script = "runTopoAndSlidingWindowAndCaloSim.py"
         output_tag = "cluster_output"
         super().__init__(script, outdir, output_tag)
         if sampling_fracs:

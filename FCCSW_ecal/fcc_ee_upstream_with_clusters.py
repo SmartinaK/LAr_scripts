@@ -69,7 +69,7 @@ field = SimG4ConstantMagneticFieldTool("SimG4ConstantMagneticFieldTool",FieldOn=
 # Translates EDM to G4Event, passes the event to G4, writes out outputs via tools
 # and a tool that saves the calorimeter hits
 from Configurables import SimG4Alg, SimG4SaveCalHits
-saveecaltool = SimG4SaveCalHits("saveECalBarrelHits",readoutNames = ["ECalBarrelEta"])
+saveecaltool = SimG4SaveCalHits("saveECalBarrelHits",readoutNames = ["ECalBarrelModuleThetaMerged"])
 saveecaltool.CaloHits.Path = "ECalBarrelHits"
 
 from Configurables import SimG4PrimariesFromEdmTool
@@ -82,7 +82,7 @@ geantsim = SimG4Alg("SimG4Alg",
                     eventProvider = particle_converter,
                     OutputLevel = INFO)
 
-ecalBarrelReadoutName = "ECalBarrelEta"
+ecalBarrelReadoutName = "ECalBarrelModuleThetaMerged"
 ecalBarrelReadoutNamePhiEta = "ECalBarrelPhiEta"
 
 from Configurables import CalibrateInLayersTool
@@ -103,7 +103,7 @@ createcellsBarrel.cells.Path="ECalBarrelCellsStep1"
 
 from Configurables import EnergyInCaloLayers
 energy_in_layers = EnergyInCaloLayers("energyInLayers",
-                                      readoutName="ECalBarrelEta",
+                                      readoutName="ECalBarrelModuleThetaMerged",
                                       numLayers = 12,
                                       # sampling fraction is given as the energy correction will be applied on
                                       # calibrated cells
